@@ -27,7 +27,7 @@ CREATE TABLE produtos (
 CREATE TABLE fornecedor (
     id_fornecedor INT PRIMARY KEY AUTO_INCREMENT,
     nome_fornecedor VARCHAR(50) NOT NULL,
-    contato_fornecedor VARCHAR(12) NOT NULL, 
+    contato_fornecedor VARCHAR(15) NOT NULL, 
     produtos_fornecidos VARCHAR(200)
 );
 
