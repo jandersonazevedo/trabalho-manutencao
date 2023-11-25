@@ -4,7 +4,7 @@ import funcoes_loja
 import pandas as pd
 
 class ConexaoDb:
-    def __init__(self,host,port,database,user,password):
+    def __init__(self, host, port, database, user, password):
         self.host = host
         self.port = port
         self.database = database
@@ -13,16 +13,28 @@ class ConexaoDb:
 
         global conn
         conn = mysql.connector.connect(
-            host = self.host,
-            port = self.port,
-            database = self.database,
-            user = self.user,
-            password = self.password
+            host=self.host,
+            port=self.port,
+            user=self.user,
+            password=self.password
+        )
+        self.criar_banco_de_dados()
+        conn = mysql.connector.connect(
+            host=self.host,
+            port=self.port,
+            database=self.database,
+            user=self.user,
+            password=self.password
         )
 
-        # Teste conexao com o banco de dados
-        # if (conn.is_connected):
-        #     print("Conectado com sucesso")
+    def criar_banco_de_dados(self):
+        try:
+            cursor = conn.cursor()
+            cursor.execute(f"CREATE DATABASE IF NOT EXISTS {self.database}")
+            conn.commit()
+            print(f"Banco de dados '{self.database}' criado com sucesso")
+        except mysql.connector.Error as err:
+            print(f"Erro ao criar o banco de dados: {err}")
     
     # Valida se usuario e senha está cadastrado no banco de dados
     def VerificaUsuario(self,usuario,senha):
@@ -87,16 +99,42 @@ class ConexaoDb:
         for id, result in resultado:
             print(id,result)
 
+class Fornecedor:
+    def __init__(self, id_fornecedor, nome_fornecedor, contato_fornecedor, produtos_fornecidos):
+        self.id_fornecedor = id_fornecedor
+        self.nome_fornecedor = nome_fornecedor
+        self.contato_fornecedor = contato_fornecedor
+        self.produtos_fornecidos = produtos_fornecidos
+
+    def CadastraFornecedor(nome, contato, produtos):
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO fornecedor (nome_fornecedor, contato_fornecedor, produtos_fornecidos) VALUES (%s, %s, %s);",
+                       (nome, contato, produtos))
+        conn.commit()
+        print(f"Fornecedor {nome} cadastrado com sucesso.")
+
+    def EditaFornecedor(id_fornecedor, nome, contato, produtos):
+        cursor = conn.cursor()
+        cursor.execute("UPDATE fornecedor SET nome_fornecedor = %s, contato_fornecedor = %s, produtos_fornecidos = %s WHERE id_fornecedor = %s;",
+                       (nome, contato, produtos, id_fornecedor))
+        conn.commit()
+        print(f"Fornecedor alterado para {nome} com sucesso.")
+
+    def ExcluiFornecedor(id_fornecedor):
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM fornecedor WHERE id_fornecedor = %s;", (id_fornecedor,))
+        conn.commit()
+        print("Fornecedor excluído com sucesso.")
 
 ##########################################
 # Dados conexao com o banco mysql server #
 ##########################################
 db = ConexaoDb(
     "localhost",
-    "3307",
+    "3306",
     "loja_informatica",
     "root",
-    "thiago"
+    "123"   #MUDAR AQUI DE ACORDO COM SUA SENHA
 )
 
 #db.MenuVisualizar()

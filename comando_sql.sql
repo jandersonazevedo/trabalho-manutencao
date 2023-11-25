@@ -24,6 +24,13 @@ CREATE TABLE produtos (
     nome_produto VARCHAR(50)
 );
 
+CREATE TABLE fornecedor (
+    id_fornecedor INT PRIMARY KEY AUTO_INCREMENT,
+    nome_fornecedor VARCHAR(50) NOT NULL,
+    contato_fornecedor VARCHAR(12) NOT NULL, 
+    produtos_fornecidos VARCHAR(200)
+);
+
 -- criando relacionamento entre as tabels
 ALTER TABLE acesso ADD CONSTRAINT fk_id_pessoa 
     FOREIGN KEY (id_pessoa) REFERENCES pessoas (id_pessoa)
@@ -48,8 +55,8 @@ SELECT * FROM produtos;
 ALTER TABLE produtos ADD CONSTRAINT valor_unico UNIQUE (nome_produto);
 
 -- Adicionar usuario no banco
-INSERT INTO acesso (usuario_acesso,senha_acesso,id_pessoa) VALUES ("Thiago","thiago",1);
+INSERT INTO acesso (usuario_acesso,senha_acesso,id_pessoa) VALUES ("admin","123",1);
 
-SELECT usuario_acesso, senha_acesso FROM acesso WHERE usuario_acesso = 'Thiago' AND
-    senha_acesso = 'thiago';
+SELECT usuario_acesso, senha_acesso FROM acesso WHERE usuario_acesso = 'admin' AND
+    senha_acesso = '123';
 
