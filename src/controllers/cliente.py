@@ -3,8 +3,6 @@ from classes_DB_loja import ConexaoDb
 
 
 class ClienteController:
-    pessoa = []
-
     @classmethod
     def CadastraCliente(cleinte: Cliente):
         (nome, cpf, contato, endereco) = cleinte

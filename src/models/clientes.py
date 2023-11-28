@@ -1,5 +1,3 @@
-from classes_DB_loja import ConexaoDb
-
 class Cliente:
     def __init__(self, id_cliente, nome_cliente, cpf, contato, endereco):
         self.id_cliente = id_cliente
