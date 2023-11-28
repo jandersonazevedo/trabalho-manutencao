@@ -100,31 +100,39 @@ class ConexaoDb:
             print(id,result)
 
 class Fornecedor:
-    def __init__(self, id_fornecedor, nome_fornecedor, contato_fornecedor, produtos_fornecidos):
-        self.id_fornecedor = id_fornecedor
-        self.nome_fornecedor = nome_fornecedor
-        self.contato_fornecedor = contato_fornecedor
-        self.produtos_fornecidos = produtos_fornecidos
-
-    def CadastraFornecedor(nome, contato, produtos):
+    def CadastraFornecedor(self, nome, contato, produtos):
         cursor = conn.cursor()
         cursor.execute("INSERT INTO fornecedor (nome_fornecedor, contato_fornecedor, produtos_fornecidos) VALUES (%s, %s, %s);",
                        (nome, contato, produtos))
         conn.commit()
         print(f"Fornecedor {nome} cadastrado com sucesso.")
 
-    def EditaFornecedor(id_fornecedor, nome, contato, produtos):
+    def EditaFornecedor(self, id_fornecedor, nome, contato, produtos):
         cursor = conn.cursor()
         cursor.execute("UPDATE fornecedor SET nome_fornecedor = %s, contato_fornecedor = %s, produtos_fornecidos = %s WHERE id_fornecedor = %s;",
-                       (nome, contato, produtos, id_fornecedor))
+                    (nome, contato, produtos, id_fornecedor))
         conn.commit()
-        print(f"Fornecedor alterado para {nome} com sucesso.")
+        print(f"Fornecedor com ID {id_fornecedor} alterado para {nome} com sucesso.")
 
-    def ExcluiFornecedor(id_fornecedor):
+
+    def ExcluiFornecedor(self, id_fornecedor):
         cursor = conn.cursor()
         cursor.execute("DELETE FROM fornecedor WHERE id_fornecedor = %s;", (id_fornecedor,))
         conn.commit()
         print("Fornecedor excluído com sucesso.")
+
+    def VisualizarFornecedores(self):
+        cursor = conn.cursor()
+        cursor.execute("SELECT id_fornecedor, nome_fornecedor FROM fornecedor;")
+        resultado = cursor.fetchall()
+        print("=================================")
+        print(">>> Visualização dos fornecedores <<<")
+        print("=================================")
+        print("")
+        print("ID Fornecedores")
+        print("------------")
+        for id, result in resultado:
+            print(id, result)
 
 ##########################################
 # Dados conexao com o banco mysql server #
@@ -134,7 +142,7 @@ db = ConexaoDb(
     "3306",
     "loja_informatica",
     "root",
-    "123"   #MUDAR AQUI DE ACORDO COM SUA SENHA
+    "Botafogo10"   #MUDAR AQUI DE ACORDO COM SUA SENHA
 )
 
 #db.MenuVisualizar()
