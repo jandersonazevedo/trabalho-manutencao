@@ -21,7 +21,7 @@ def MenuPrincipal():
             opcao = int(input("Digite a opção desejada: "))
             # limpa tela
             os.system("cls" if os.name == "nt" else "clear")
-            if (opcao == 1):
+            elif (opcao == 1):
                 produto = input("Qual produto deseja cadastrar: ")
                 try:    
                     classes_DB_loja.db.MenuCadastrar(produto)
