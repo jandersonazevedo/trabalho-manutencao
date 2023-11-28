@@ -134,7 +134,7 @@ db = ConexaoDb(
     "3306",
     "loja_informatica",
     "root",
-    "root"   #MUDAR AQUI DE ACORDO COM SUA SENHA
+    "123"   #MUDAR AQUI DE ACORDO COM SUA SENHA
 )
 
 #db.MenuVisualizar()

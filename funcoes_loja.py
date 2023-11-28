@@ -47,7 +47,7 @@ def MenuPrincipal():
                 print("Opção inválida...")
                 input("Pressione enter para continuar...")
     except:
-        printf("Opção invãlida...")
+        print("Opção invãlida...")
         input("Pressione enter para continuar...")
         MenuPrincipal()
         
