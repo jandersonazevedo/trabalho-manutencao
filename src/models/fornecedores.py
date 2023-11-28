@@ -12,14 +12,14 @@ class Fornecedor:
         cursor.execute("INSERT INTO fornecedor (nome_fornecedor, contato_fornecedor, produtos_fornecidos) VALUES (%s, %s, %s);",
                        (nome, contato, produtos))
         ConexaoDb.conn.commit()
-        print(f"Fornecedor {nome} cadastrado com sucesso.")
+        print("Fornecedor {nome} cadastrado com sucesso.")
 
     def EditaFornecedor(id_fornecedor, nome, contato, produtos):
         cursor = ConexaoDb.conn.cursor()
         cursor.execute("UPDATE fornecedor SET nome_fornecedor = %s, contato_fornecedor = %s, produtos_fornecidos = %s WHERE id_fornecedor = %s;",
                        (nome, contato, produtos, id_fornecedor))
         ConexaoDb.conn.commit()
-        print(f"Fornecedor alterado para {nome} com sucesso.")
+        print("Fornecedor alterado para {nome} com sucesso.")
 
     def ExcluiFornecedor(id_fornecedor):
         cursor = ConexaoDb.conn.cursor()
