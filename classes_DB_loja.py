@@ -69,14 +69,14 @@ class ConexaoDb:
         cursor = conn.cursor()
         cursor.execute("INSERT INTO produtos (nome_produto) VALUES ('"+ produto +"');")
         conn.commit()
-        print(f"Produto {produto} cadastrado com sucesso...")
+        print("Produto {produto} cadastrado com sucesso...")
 
     # Opcao 2 do menu alterar produto
     def MenuAlterar(self,produto,id):
         cursor = conn.cursor()
         cursor.execute("UPDATE produtos SET nome_produto = '" + produto + "' WHERE id_produto = "+ str(id) + ";")
         conn.commit()
-        print(f"Produto alterado para {produto} com sucesso...")
+        print("Produto alterado para {produto} com sucesso...")
 
     # Opcao 3 do menu excluir produtos
     def MenuExluir(self,id):
@@ -111,14 +111,14 @@ class Fornecedor:
         cursor.execute("INSERT INTO fornecedor (nome_fornecedor, contato_fornecedor, produtos_fornecidos) VALUES (%s, %s, %s);",
                        (nome, contato, produtos))
         conn.commit()
-        print(f"Fornecedor {nome} cadastrado com sucesso.")
+        print("Fornecedor {nome} cadastrado com sucesso.")
 
     def EditaFornecedor(id_fornecedor, nome, contato, produtos):
         cursor = conn.cursor()
         cursor.execute("UPDATE fornecedor SET nome_fornecedor = %s, contato_fornecedor = %s, produtos_fornecidos = %s WHERE id_fornecedor = %s;",
                        (nome, contato, produtos, id_fornecedor))
         conn.commit()
-        print(f"Fornecedor alterado para {nome} com sucesso.")
+        print("Fornecedor alterado para {nome} com sucesso.")
 
     def ExcluiFornecedor(id_fornecedor):
         cursor = conn.cursor()
@@ -134,7 +134,7 @@ db = ConexaoDb(
     "3306",
     "loja_informatica",
     "root",
-    "123"   #MUDAR AQUI DE ACORDO COM SUA SENHA
+    "root"   #MUDAR AQUI DE ACORDO COM SUA SENHA
 )
 
 #db.MenuVisualizar()
