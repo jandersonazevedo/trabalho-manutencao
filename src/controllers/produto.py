@@ -1,5 +1,12 @@
-from ..models.produtos import Produto
-from classes_DB_loja import ConexaoDb
+from ...db import ConexaoDb
+
+import sys
+from pathlib import Path
+file = Path(__file__).resolve()
+parent, root = file.parent, file.parents[1]
+sys.path.append(str(root))
+
+from models.produto import Produto
 
 class ProdutoController:
     @classmethod

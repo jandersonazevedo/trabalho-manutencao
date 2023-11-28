@@ -1,5 +1,12 @@
-from ..models.fornecedores import Fornecedor
-from classes_DB_loja import ConexaoDb
+from ...db import ConexaoDb
+
+import sys
+from pathlib import Path
+file = Path(__file__).resolve()
+parent, root = file.parent, file.parents[1]
+sys.path.append(str(root))
+
+from models.fornecedore import Fornecedor
 
 class FornecedorController:
     @classmethod
