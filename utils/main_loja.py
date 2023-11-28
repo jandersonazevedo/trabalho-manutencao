@@ -1,4 +1,4 @@
-import classes_DB_loja
+from ..db import classes_DB_loja
 import os
 
 # limpa tela
