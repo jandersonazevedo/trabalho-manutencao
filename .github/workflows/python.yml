@@ -1,13 +1,14 @@
 name: Build
+
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +19,7 @@ jobs:
     - name: Set up Python 3.12.0
       uses: actions/setup-python@v2
       with:
-       python-version: 3.12.0
+        python-version: 3.12.0
 
     - name: Install dependencies
       run: |
@@ -34,3 +35,9 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_PROJECT_KEY: jandersonazevedo_trabalho-manutencao
         SONAR_ORGANIZATION: sistema-de-gestao-de-loja
+
+    # Adicione o trecho abaixo para forçar o uso do Node.js versão 16
+    - name: Use Node.js 16
+      run: setup-node@v3
+      with:
+        node-version: '16'
