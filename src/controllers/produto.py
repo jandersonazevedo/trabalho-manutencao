@@ -9,7 +9,7 @@ from models.produto import Produto
 
 class ProdutoController:
     @classmethod
-    def CadastraProduto(cls, produto: Produto):
+    def cadastrar_produto(cls, produto: Produto):
         nome = produto.nome_produto
         qtd_disponivel = produto.qtd_disponivel
         tipo = produto.tipo
@@ -24,7 +24,7 @@ class ProdutoController:
         print(f"Produto {nome} cadastrado com sucesso.")
 
     @classmethod
-    def EditaProduto(cls, produto: Produto):
+    def editar_produto(cls, produto: Produto):
         id_produto = produto.id_produto
         nome = produto.nome_produto
         qtd_disponivel = produto.qtd_disponivel
@@ -40,7 +40,7 @@ class ProdutoController:
         print(f"Produto alterado para {nome} com sucesso.")
 
     @classmethod
-    def ExcluiProduto(cls, produto: Produto):
+    def excluir_produto(cls, produto: Produto):
         id_produto = produto.id_produto
         cursor = ConexaoDb.conn.cursor()
         cursor.execute("DELETE FROM produtos WHERE id_produto = %s;", (id_produto,))
@@ -48,7 +48,7 @@ class ProdutoController:
         print("Produto excluído com sucesso.")
 
     @classmethod
-    def ListarProduto(cls):
+    def listar_produtos(cls):
         cursor = ConexaoDb.conn.cursor()
         cursor.execute("SELECT * FROM produtos;")
         ConexaoDb.conn.commit()
