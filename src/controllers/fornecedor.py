@@ -35,9 +35,7 @@ class FornecedorController:
         print(f"Fornecedor alterado para {nome} com sucesso.")
 
     @classmethod
-    def ExcluiFornecedor(cls, fornecedor: Fornecedor):
-        id_fornecedor = fornecedor.id_fornecedor
+    def ListarFornecedor(cls):
         cursor = ConexaoDb.conn.cursor()
-        cursor.execute("DELETE FROM fornecedor WHERE id_fornecedor = %s;", (id_fornecedor,))
+        cursor.execute("SELECT * FROM fornecedor;")
         ConexaoDb.conn.commit()
-        print("Fornecedor excluído com sucesso.")

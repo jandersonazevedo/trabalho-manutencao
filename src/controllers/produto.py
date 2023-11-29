@@ -1,11 +1,10 @@
-from ...db import ConexaoDb
-
 import sys
 from pathlib import Path
 file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
+from db.classes_DB_loja import ConexaoDb
 from models.produto import Produto
 
 class ProdutoController:
@@ -47,3 +46,9 @@ class ProdutoController:
         cursor.execute("DELETE FROM produtos WHERE id_produto = %s;", (id_produto,))
         ConexaoDb.conn.commit()
         print("Produto excluído com sucesso.")
+
+    @classmethod
+    def ListarProduto(cls):
+        cursor = ConexaoDb.conn.cursor()
+        cursor.execute("SELECT * FROM produtos;")
+        ConexaoDb.conn.commit()

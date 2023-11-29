@@ -1,4 +1,4 @@
-from classes_DB_loja import ConexaoDb
+from ...db.classes_DB_loja import ConexaoDb
 
 class Produto:
     def __init__(self, id_produto, nome_produto, qtd_disponivel, tipo, data_chegada, descricao, preco):

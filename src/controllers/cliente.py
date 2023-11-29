@@ -44,3 +44,9 @@ class ClienteController:
         ConexaoDb.conn.commit()
         print("Cliente excluído com sucesso.")
 
+    @classmethod
+    def ListarCliente(cls):
+        cursor = ConexaoDb.conn.cursor()
+        cursor.execute("SELECT * FROM clientes;")
+        ConexaoDb.conn.commit()
+
